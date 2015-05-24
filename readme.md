@@ -10,6 +10,13 @@ and manipulates data to create 2 tidy data sets.
 Part 1 creates manipulates the raw data to create a tidy data set for the questions 1-4 in the assignement.
 Part 2 creates a tidy data set for the question 5.
 
+The file "codebook.txt" is a modified version of the initial codebook, provided by the authors of the dataset.
+
+In the beginning of it, I describe the variables added by me and their meaning.
+
+Than there is a text from authors, describing the process of signal processing and features selection, modified to 
+describe only the parts used in our final tidy data.
+
 #Part1:
 
 ##Creating a first tidy data set for questions 1-4
