@@ -11,6 +11,9 @@ Part 1 creates manipulates the raw data to create a tidy data set for the questi
 Part 2 creates a tidy data set for the question 5.
 
 #Part1:
+
+##Creating a first tidy data set for questions 1-4
+
 Step 1. Getting train and test data into R. I loaded the files in the UCI HAR directory and the first level
 of subdirectories, ignoring the "Inertial Signals" "rawest" data.
 
@@ -37,7 +40,9 @@ we look for "std" and "mean" in text of column names (this corresponds to the
 
 Step9. Saving the data as a first tidy data set 
 
-#Part2. Creating a second tidy data set for the question #5.
+#Part2. 
+
+##Creating a second tidy data set for the question #5.
 
 To do this, we simply need to group our data by activityName and subject, and
 then apply mean() to each column
