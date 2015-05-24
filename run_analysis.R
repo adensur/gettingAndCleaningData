@@ -56,7 +56,7 @@ index=c(grep("std",colnames(data)),grep("mean",colnames(data)))
 data=data[,c(index,563:565)]
 
 #Step9. the tidy data for step4 is ready! Let us save it and move on to the 5th step:
-write.table(data,"tidy1.txt",quote=FALSE,row.names=FALSE)
+#write.table(data,"tidy1.txt",quote=FALSE,row.names=FALSE)
 
 
 
