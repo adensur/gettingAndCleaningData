@@ -11,33 +11,39 @@ Part 1 creates manipulates the raw data to create a tidy data set for the questi
 Part 2 creates a tidy data set for the question 5.
 
 Part1:
-Step 1. Load all the required data into R. I loaded all the files in the UCI HAR directory and the first level
+Step 1. Getting train and test data into R. I loaded the files in the UCI HAR directory and the first level
 of subdirectories, ignoring the "Inertial Signals" "rawest" data.
 
-Step 2. Replace the indexes marking the activity performed during the measurement into the activity names themselves;
-So, for example, 1 is replaced with "Walking" and so on.
+Step 2. Grabbing appropriate column names for both sets
 
-Step 3. Set the appropriate names for the columns; the names for feature vector are taken from the file "features.txt".
+Step 3. Getting activity lavels (i.e. numbers 1,2,3,4,5 or 6), corresponding to performed activity, and adding as extra column in both train and test data
 
-Step 4. Shorten the feature vector, by exctracting only the values corresponding to either mean or standart deviation of something. 
-I took the values, marked as mean(), str(), meanFreq() and the values obtained by averaging the signals in a window sample: 
-gravityMean
-tBodyAccMean
-tBodyAccJerkMean
-tBodyGyroMean
-tBodyGyroJerkMean
-That was done by creating a 86-long index vector, with each index marking a correct column in the feature vector.
+Step 4. Getting id's of subjects, who performed each activity and adding them as an extra 
+column of the data:
 
-Step 5. Clip together the 86-long shortened feature vector with the subject number and activity label for each measurement. This is done separately for the "train" and "test" data sets. 
-Step 6. Add the column "test/train", marking if the measurement belongs to the test group, or to the training group. 
-Step 7. Clip together "train" and "test" data by rows
-Step 8. Write the obtained data in tidy_data.txt
+Step 5.  Last step before merging train and test data - I want to keep the information
+about whether the subject performed in the test data set or in the train data
+set, so I am creating an extra column called "dataset"
+
+Step 6. Merging the train and test data
+
+Step 7. Getting activity names for each activity label and merging them with our 
+dataset, so that we have descriptive activity names instead of labels like
+1, 2, 3, 4, 5 or 6
+
+Step 8. To find out which columns correspond to "mean" or "standard deviation" values,
+we look for "std" and "mean" in text of column names (this corresponds to the
+2nd step in the assignement), and select out only those columns.
+
+Step9. Saving the data as a first tidy data set 
 
 Part2. Creating a second tidy data set for the question #5.
-At the beginning, we already have all the files loaded into R.
-We repeat steps 5-7 from the first part, skipping step 4. So, the output is a data set similar to the tidy_data, obtained in the first part, but the feature vector is now not shortened.
-After that, for each activity and each subject we extract data, corresponding to only that subject and activity, and calculate column means. So, for example, for subject #18, for activity "STANDING" there are 73 measurements.
-We clip together the "columnMeans" by rows, getting a matrix 180by561, with 180 corresponding to 6 times 30 possible
-pairs of subject and activity, and 561 being the length of feature vector.
-Then we write down the subject number and activity name for each row.
-The obtained data frame is a final tidy data, and it is written into tidy_data2.txt
+
+To do this, we simply need to group our data by activityName and subject, and
+then apply mean() to each column
+
+For that we will use {dplyr}'s summarize_each function, which allows us to 
+apply a function to each column without explicitly telling it. Variables
+used for grouping (subject and activityName) are excluded automatically,
+which leaves us only the "dataset" variables, which we need to exclude 
+ourselves
