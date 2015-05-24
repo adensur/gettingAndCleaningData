@@ -10,7 +10,7 @@ and manipulates data to create 2 tidy data sets.
 Part 1 creates manipulates the raw data to create a tidy data set for the questions 1-4 in the assignement.
 Part 2 creates a tidy data set for the question 5.
 
-Part1:
+#Part1:
 Step 1. Getting train and test data into R. I loaded the files in the UCI HAR directory and the first level
 of subdirectories, ignoring the "Inertial Signals" "rawest" data.
 
@@ -37,7 +37,7 @@ we look for "std" and "mean" in text of column names (this corresponds to the
 
 Step9. Saving the data as a first tidy data set 
 
-Part2. Creating a second tidy data set for the question #5.
+#Part2. Creating a second tidy data set for the question #5.
 
 To do this, we simply need to group our data by activityName and subject, and
 then apply mean() to each column
